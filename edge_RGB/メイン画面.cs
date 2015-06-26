@@ -64,19 +64,21 @@ namespace edge_RGB
         }
         private void 入力画像_RGB作成()
         {
+
             for (int i = 0; i < 3; i++)
             {
                 入力画像_RGB[i] = Cv.CreateImage(入力画像.Size, BitDepth.U8, 1);
                 入力画像_RGB[i].Zero();
             }
-            for (int x = 0; x < 入力画像.Width; x++)
-                for (int y = 0; y < 入力画像.Height; y++)
-                {
-                    CvColor c = 入力画像[y, x];
-                    入力画像_RGB[0].Set2D(y, x, c.R);
-                    入力画像_RGB[1].Set2D(y, x, c.G);
-                    入力画像_RGB[2].Set2D(y, x, c.B);
-                }
+            Cv.CvtPixToPlane(入力画像, 入力画像_RGB[2], 入力画像_RGB[1], 入力画像_RGB[0],null);
+            //for (int x = 0; x < 入力画像.Width; x++)
+            //    for (int y = 0; y < 入力画像.Height; y++)
+            //    {
+            //        CvColor c = 入力画像[y, x];
+            //        入力画像_RGB[0].Set2D(y, x, c.R);
+            //        入力画像_RGB[1].Set2D(y, x, c.G);
+            //        入力画像_RGB[2].Set2D(y, x, c.B);
+            //    }
 
         }
 
